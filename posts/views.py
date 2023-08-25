@@ -7,6 +7,7 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework import status
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
@@ -57,11 +58,24 @@ def sorted_post_list(request):
     serializer = PostSerializer(sorted_queryset, many=True)
     return Response(serializer.data)
 
-class CommentViewSet(ModelViewSet):
-    authentication_classes = [BasicAuthentication, SessionAuthentication]
-    permission_classes = [IsAuthenticated,]
-    queryset = Comment.objects.all()
-    serializer_class = CommentSerializer
+# class CommentViewSet(ModelViewSet):
+#     authentication_classes = [BasicAuthentication, SessionAuthentication]
+#     permission_classes = [IsAuthenticated,]
+#     queryset = Comment.objects.all()
+#     serializer_class = CommentSerializer
 
-    def perform_create(self, serializer):
-        serializer.save(user = self.request.user)
+#     def perform_create(self, serializer):
+#         serializer.save(user = self.request.user)
+
+@api_view(['POST'])
+def add_comment(request):
+    post_id = request.data.get('post_id')
+    content = request.data.get('content')
+    
+    post = Posts.objects.get(id=post_id)
+    
+    comment = Comment(post=post, user=request.user, content=content)
+    comment.save()
+    
+    serializer = CommentSerializer(comment)
+    return Response(serializer.data, status=status.HTTP_201_CREATED)    
