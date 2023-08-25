@@ -25,7 +25,7 @@ class Posts(models.Model):
     def __str__(self):
         return self.title
     
-    duration = models.IntegerField(default=30)  # D-day 지속 일수
+    duration = models.IntegerField()  # D-day 지속 일수
 
     @property
     def d_day(self):

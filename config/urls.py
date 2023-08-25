@@ -30,6 +30,6 @@ urlpatterns = [
 
     path('', include(posts_router.urls)),
     path('', include(accounts_router.urls)),
-    path('sorted_posts/', SortedPostListView.as_view(), name='sorted-posts'),  # d-day로 정렬된 리스트 불러옴
+    # path('sorted_posts/', SortedPostListView.as_view(), name='sorted-posts'),  # d-day로 정렬된 리스트 불러옴
     path('', include(posts_router.urls)),
 ]
