@@ -103,9 +103,9 @@ $ npm run dev
 ## 화면 구성 📺
 | **메인 페이지**  |  **청원 신청**   |
 | :-------------------------------------------: | :------------: |
-|  <img width="329" src="https://github.com/wooseok123/sinchonthon_readme/assets/59460718/a40b9b11-3833-4b81-8dea-9e34b10f81a7"/> |  <img width="329" src="https://github.com/wooseok123/sinchonthon_readme/assets/59460718/a40b9b11-3833-4b81-8dea-9e34b10f81a7"/>|  
+|  <img width="329" src="https://i.ibb.co/tK1Zp27/image.png"/> |  <img width="329" src="https://i.ibb.co/sCr0Cy1/image.png"/>|  
 | **동의 진행 청원**   |  **학교 전송 청원**   |  
-| <img width="329" src="https://github.com/wooseok123/sinchonthon_readme/assets/59460718/a40b9b11-3833-4b81-8dea-9e34b10f81a7"/>   |  <img width="329" src="https://github.com/wooseok123/sinchonthon_readme/assets/59460718/a40b9b11-3833-4b81-8dea-9e34b10f81a7"/>     |
+| <img width="329" src="https://i.ibb.co/dcJGnSt/image.png"/>   |  <img width="329" src="https://i.ibb.co/nsfr0fx/image.png"/>     |
 
 ---
 ## 주요 기능 📦
