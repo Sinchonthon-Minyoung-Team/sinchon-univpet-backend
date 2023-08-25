@@ -139,11 +139,9 @@ class OAuthTokenObtainView(APIView):
 
         # OAuth 인증으로 가입한 사용자 정보 탐색
         try:
-            user = User.oauths.filter(
-                oauth_provider=provider).get(oauth_id=oauth_id)
+            user = User.oauths.filter(oauth_provider=provider).get(oauth_id=oauth_id)
         except User.DoesNotExist as e:
-            user = User.oauths.create_user(
-                oauth_provider=provider, oauth_id=oauth_id)
+            user = User.oauths.create_user(oauth_provider=provider, oauth_id=oauth_id)
 
         # JWT 발급, 응답
         refresh = RefreshToken.for_user(user)

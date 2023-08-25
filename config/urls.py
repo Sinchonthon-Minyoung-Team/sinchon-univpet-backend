@@ -17,15 +17,22 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+from rest_framework_simplejwt.views import TokenRefreshView
+
 from rest_framework.routers import DefaultRouter
 
 from accounts.views import AccountCreateRetrieveViewSet
+from auths.views import OAuthTokenObtainView
 
 accounts_router = DefaultRouter()
 accounts_router.register(r'accounts', AccountCreateRetrieveViewSet, basename='accounts')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    path('auth/<str:provider>/token',
+         OAuthTokenObtainView.as_view(), name='token_obtain'),
+    path('auth/refresh', TokenRefreshView.as_view(), name='token_refresh'),
 
     path('', include(accounts_router.urls)),
 ]
