@@ -34,6 +34,9 @@ from posts.views import PostViewSet
 posts_router = DefaultRouter()
 posts_router.register(r'posts', PostViewSet, basename='posts')
 
+accounts_router = DefaultRouter()
+accounts_router.register(r'accounts', AccountCreateRetrieveViewSet, basename='accounts')
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 

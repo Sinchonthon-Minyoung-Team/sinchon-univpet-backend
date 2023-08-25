@@ -18,7 +18,9 @@ class AccountCreateRetrieveViewSet(CreateModelMixin, RetrieveModelMixin, Generic
 
     def create(self, request):
         user = request.user
-        serializer = UserSerializer(data=request.data, partial=True)
+        serializer = UserSerializer(user, data=request.data, partial=True)
+        if not serializer.is_valid():
+            return Response({"detail": "Bad request"}, status=status.HTTP_400_BAD_REQUEST)
         user.is_register = True
         user.save()
         return Response(data=serializer.data)
