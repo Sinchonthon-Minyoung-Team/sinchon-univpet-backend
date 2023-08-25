@@ -54,7 +54,9 @@ $ git clone https://github.com/Sinchonthon-Minyoung-Team/sinchon-back.git
 $ cd sinchon-back
 ```
 
-### Nginx conf
+
+
+#### Nginx conf
 ```
 server {
         listen 80;
