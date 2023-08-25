@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from datetime import timedelta
+from datetime import timedelta
 import os
 from pathlib import Path
 
@@ -45,13 +46,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    
     'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt',
 
     'accounts',
     'posts',
+    'likes',
 ]
 
 MIDDLEWARE = [
@@ -149,7 +151,6 @@ CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
 ]
 
-
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
@@ -160,7 +161,7 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
 }
 
 SIMPLE_JWT = {

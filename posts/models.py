@@ -1,3 +1,4 @@
+from datetime import timedelta
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils import timezone
@@ -24,9 +25,20 @@ class Posts(models.Model):
     def __str__(self):
         return self.title
     
+    duration = models.IntegerField()  # D-day 지속 일수
+
     @property
-    def status(self):
-        if timezone.now().date() - self.created_at.date() > 30:
-            return 'EN'
-        else:
-            return 'CU'
+    def d_day(self):
+        days_remaining = (self.created_at + timedelta(days=self.duration)).date() - timezone.now().date()
+        if days_remaining.days < 0:
+            return "End"
+        return days_remaining.days
+
+class Comment(models.Model):
+    post = models.ForeignKey(Posts, on_delete = models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.comment
