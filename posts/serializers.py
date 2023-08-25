@@ -5,7 +5,7 @@ from posts.models import Posts
 
 class PostSerializer(ModelSerializer):
     status = serializers.ReadOnlyField()
-    
+
     class Meta:
         model = Posts
         fields = '__all__'
