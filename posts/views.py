@@ -8,10 +8,10 @@ from posts.serializers import PostSerializer
 
 class PostViewSet(ModelViewSet):
     serializer_class = PostSerializer
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
 
     def perform_create(self, serializer):
-        serializer(writer=self.request.user).save()
+        serializer.save(writer=self.request.user)
     
     def get_queryset(self):
         return Posts.objects.order_by('-created_at')
