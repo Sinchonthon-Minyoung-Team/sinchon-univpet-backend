@@ -50,11 +50,26 @@
 
 ### Installation
 ``` bash
-$ git clone git@github.com:wooseok123/sinchonthon_readme.git
-$ cd 프로젝트명
+$ git clone https://github.com/Sinchonthon-Minyoung-Team/sinchon-back.git
+$ cd sinchon-back
 ```
 
-
+### Nginx conf
+```
+server {
+        listen 80;
+        server_name 3.39.53.3;
+        location / {
+                include proxy_params;
+                proxy_pass http://unix:/home/ubuntu/univpet-backend/run/gunicorn.sock;
+                proxy_read_timeout 300s;
+                proxy_connect_timeout 75s;
+        }
+        location /static {
+                alias /home/ubuntu/univpet-backend/static;
+        }
+}
+```
 
 
 
@@ -62,19 +77,18 @@ $ cd 프로젝트명
 
 #### Backend
 ```
-$ cd server
-$ mkdir .venv
-$ pipenv install
-$ source .venv/Scripts/activate
-$ python3 manage.py migrate --run-syncdb
-$ python3 manage.py makemigrations
+$ cd sinchon-back
+$ python3 -m venv venv
+$ source venv/bin/activate
 $ python3 manage.py migrate
-$ python3 manage.py runserver
+$ sudo systemctl daemon-reload
+$ sudo systemctl restart nginx
+$ sudo systenctl restart gunicorn
 ```
 
 #### Frontend
 ```
-$ cd front
+$ cd education
 $ npm install 
 $ npm run dev
 ```
