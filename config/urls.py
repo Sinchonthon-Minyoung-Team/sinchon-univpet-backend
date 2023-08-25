@@ -19,7 +19,6 @@ posts_router.register(r'posts', PostViewSet, basename='posts')
 comments_router = DefaultRouter()
 comments_router.register(r'comments', CommentViewSet, basename='comments')
 
-
 accounts_router = DefaultRouter()
 accounts_router.register(r'accounts', AccountCreateRetrieveViewSet, basename='accounts')
 
@@ -38,4 +37,5 @@ urlpatterns = [
     path('sorted_posts/', sorted_post_list, name='sorted-posts'),
     path('', include(posts_router.urls)),
     path('likes/', include('likes.urls')),
+    path('', include(comments_router.urls)),
 ]

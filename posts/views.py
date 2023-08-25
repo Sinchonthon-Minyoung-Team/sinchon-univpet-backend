@@ -21,7 +21,7 @@ from rest_framework.generics import ListAPIView
 
 class PostViewSet(ModelViewSet):
     serializer_class = PostSerializer
-    #permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
 
     def perform_create(self, serializer):
         serializer.save(writer=self.request.user)
@@ -59,7 +59,7 @@ def sorted_post_list(request):
 
 class CommentViewSet(ModelViewSet):
     authentication_classes = [BasicAuthentication, SessionAuthentication]
-    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+    permission_classes = [IsAuthenticated,]
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
 
