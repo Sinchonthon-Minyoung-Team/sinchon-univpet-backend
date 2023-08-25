@@ -22,10 +22,14 @@ from rest_framework_simplejwt.views import TokenRefreshView
 from rest_framework.routers import DefaultRouter
 from auths.views import OAuthTokenObtainView
 
-from posts.views import PostViewSet
+from posts.views import PostViewSet, CommentViewSet
 
 posts_router = DefaultRouter()
 posts_router.register(r'posts', PostViewSet, basename='posts')
+
+comments_router = DefaultRouter()
+comments_router.register(r'comments', CommentViewSet, basename='comments')
+
 from accounts.views import AccountCreateRetrieveViewSet
 
 accounts_router = DefaultRouter()
@@ -40,4 +44,5 @@ urlpatterns = [
 
     path('', include(posts_router.urls)),
     path('', include(accounts_router.urls)),
+    path('', include(comments_router.urls)),
 ]

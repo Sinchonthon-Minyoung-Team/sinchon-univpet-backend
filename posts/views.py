@@ -3,9 +3,13 @@ from django.db.models import Q
 
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 
-from posts.models import Posts
-from posts.serializers import PostSerializer
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from .permissions import IsOwnerOrReadOnly
+
+from posts.models import Posts, Comment
+from posts.serializers import PostSerializer, CommentSerializer
 
 class PostViewSet(ModelViewSet):
     serializer_class = PostSerializer
@@ -34,3 +38,12 @@ class PostViewSet(ModelViewSet):
                 Q(title__contains=keyword_query) | Q(content__contains=keyword_query))
             
         return queryset
+
+class CommentViewSet(ModelViewSet):
+    authentication_classes = [BasicAuthentication, SessionAuthentication]
+    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(user = self.request.user)
