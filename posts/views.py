@@ -5,6 +5,8 @@ from django.db.models import Q
 
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 from posts.models import Posts
 from posts.serializers import PostSerializer
@@ -41,15 +43,12 @@ class PostViewSet(ModelViewSet):
             
         return queryset
 
-## d-day 기준으로 정렬해서 불러오는 뷰    
-# class SortedPostListView(ListAPIView):
-#     serializer_class = PostSerializer
-
-#     def get_queryset(self):
-#         queryset = Posts.objects.annotate(
-#             expire_at=ExpressionWrapper(
-#                 F('created_at') + F('duration') * fields.DateTimeField.interval(days=1),
-#                 output_field=DateTimeField()
-#             )
-#         ).order_by('expire_at')
-#         return queryset
+@api_view(['GET'])
+def sorted_post_list(request):
+    queryset = Posts.objects.all()
+    
+    # d_day 속성을 기반으로 정렬합니다.
+    sorted_queryset = sorted(queryset, key=lambda x: x.d_day if x.d_day != "End" else float('inf'))
+    
+    serializer = PostSerializer(sorted_queryset, many=True)
+    return Response(serializer.data)

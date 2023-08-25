@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import include, path
 from accounts.views import AccountCreateRetrieveViewSet
-from posts.views import PostViewSet
+from posts.views import PostViewSet, sorted_post_list
 # from posts.views import SortedPostListView  # 해당 뷰를 import 해야합니다.
 
 from rest_framework_simplejwt.views import TokenRefreshView
@@ -30,6 +30,6 @@ urlpatterns = [
 
     path('', include(posts_router.urls)),
     path('', include(accounts_router.urls)),
-    # path('sorted_posts/', SortedPostListView.as_view(), name='sorted-posts'),  # d-day로 정렬된 리스트 불러옴
+    path('sorted_posts/', sorted_post_list, name='sorted-posts'),
     path('', include(posts_router.urls)),
 ]
