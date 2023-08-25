@@ -11,7 +11,7 @@ class PostViewSet(ModelViewSet):
     permission_classes = (IsAuthenticated,)
 
     def perform_create(self, serializer):
-        serializer().save(writer=self.request.user)
+        serializer.save(writer=self.request.user)
     
     def get_queryset(self):
         return Posts.objects.order_by('-created_at')
