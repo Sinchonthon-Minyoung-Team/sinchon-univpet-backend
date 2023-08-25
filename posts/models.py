@@ -21,3 +21,6 @@ class Posts(models.Model):
     likes = models.IntegerField()
     status = models.CharField(max_length=2, choices=STATUS_CHOICES)
     created_at = models.DateTimeField()
+
+    def __str__(self):
+        return self.title
