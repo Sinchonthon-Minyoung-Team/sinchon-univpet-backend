@@ -32,4 +32,4 @@ class Posts(models.Model):
         days_remaining = (self.created_at + timedelta(days=self.duration)).date() - timezone.now().date()
         if days_remaining.days < 0:
             return "End"
-        return f"D-{days_remaining.days}"
+        return days_remaining.days

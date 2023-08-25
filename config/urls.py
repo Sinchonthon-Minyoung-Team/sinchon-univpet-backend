@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import include, path
 from accounts.views import AccountCreateRetrieveViewSet
 from posts.views import PostViewSet
-from posts.views import SortedPostListView  # 해당 뷰를 import 해야합니다.
+# from posts.views import SortedPostListView  # 해당 뷰를 import 해야합니다.
 
 from rest_framework_simplejwt.views import TokenRefreshView
 
