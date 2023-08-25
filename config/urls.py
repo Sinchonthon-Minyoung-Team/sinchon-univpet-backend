@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import include, path
 from accounts.views import AccountCreateRetrieveViewSet
-from posts.views import PostViewSet, add_comment, sorted_post_list
+from posts.views import PostViewSet, add_comment, get_petition_detail, sorted_post_list
 # from posts.views import SortedPostListView  # 해당 뷰를 import 해야합니다.
 
 from rest_framework_simplejwt.views import TokenRefreshView
@@ -39,4 +39,6 @@ urlpatterns = [
     path('likes/', include('likes.urls')),
     # path('', include(comments_router.urls)),
     path('add-comment/', add_comment, name='add_comment'),
+
+    path('petitions/<int:post_id>/', get_petition_detail, name='petition-detail'),
 ]

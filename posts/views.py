@@ -95,13 +95,13 @@ def get_petition_detail(request, post_id):
         comment_serializer = CommentSerializer(comments, many=True)
 
         # Like 정보 가져오기
-        likes = Like.objects.filter(post=post)
-        like_serializer = LikeSerializer(likes, many=True)
+        # likes = Like.objects.filter(post=post)
+        # like_serializer = LikeSerializer(likes, many=True)
 
         return Response({
             'post': post_serializer.data,
             'comments': comment_serializer.data,
-            'likes': like_serializer.data
+            # 'likes': like_serializer.data
         }, status=status.HTTP_200_OK)
 
     except Posts.DoesNotExist:
