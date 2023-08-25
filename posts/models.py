@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+from django.utils import timezone
 
 # Create your models here.
 class Posts(models.Model):
@@ -13,13 +14,19 @@ class Posts(models.Model):
         ('CU', 'Current'),
         ('EN', 'End'),
     )
-    writer = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    writer = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=100)
     category = models.CharField(max_length=2, choices=CATEGORY_CHOICES)
     content = models.TextField()
     likes = models.IntegerField(default=0)
-    status = models.CharField(max_length=2, choices=STATUS_CHOICES)
     created_at = models.DateTimeField()
 
     def __str__(self):
         return self.title
+    
+    @property
+    def status(self):
+        if timezone.now().date() - self.created_at.date() > 30:
+            return 'EN'
+        else:
+            return 'CU'
