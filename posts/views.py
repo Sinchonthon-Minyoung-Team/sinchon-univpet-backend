@@ -1,5 +1,6 @@
 from datetime import timedelta
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+
 from django.db.models import Q
 
 from rest_framework.viewsets import ModelViewSet
@@ -14,7 +15,7 @@ from rest_framework.generics import ListAPIView
 
 class PostViewSet(ModelViewSet):
     serializer_class = PostSerializer
-    permission_classes = (IsAuthenticated,)
+    #permission_classes = (IsAuthenticated,)
 
     def perform_create(self, serializer):
         serializer.save(writer=self.request.user)
