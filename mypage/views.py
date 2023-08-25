@@ -7,7 +7,7 @@ from posts.models import Posts
 
 class UserProfileView(APIView):
     def get(self, request, user_id):
-        user_profile = get_object_or_404(CustomUser, user_id=user_id)
+        user_profile = get_object_or_404(CustomUser, id=user_id)
 
         post_ids = Posts.objects.filter(writer=user_profile).values_list('id', flat=True)
 

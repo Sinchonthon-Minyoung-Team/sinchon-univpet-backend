@@ -39,6 +39,6 @@ urlpatterns = [
     path('likes/', include('likes.urls')),
     # path('', include(comments_router.urls)),
     path('add-comment/', add_comment, name='add_comment'),
-
+    path('mypage/', include('mypage.urls')),
     path('petitions/<int:post_id>/', get_petition_detail, name='petition-detail'),
 ]
