@@ -39,7 +39,7 @@ class LikeDetail(generics.RetrieveAPIView, generics.CreateAPIView):
             (self.__class__.__name__, lookup_url_kwarg)
         )
 
-        post = get_object_or_404(Post.objects.all(), id=self.kwargs[lookup_url_kwarg])
+        post = get_object_or_404(Posts.objects.all(), id=self.kwargs[lookup_url_kwarg])
         filter_kwargs[self.lookup_field] = post
         filter_kwargs['user'] = self.request.user
 
