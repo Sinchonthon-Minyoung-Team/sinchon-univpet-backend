@@ -32,4 +32,5 @@ urlpatterns = [
     path('', include(accounts_router.urls)),
     path('sorted_posts/', sorted_post_list, name='sorted-posts'),
     path('', include(posts_router.urls)),
+    path('likes/', include('likes.urls')),
 ]
