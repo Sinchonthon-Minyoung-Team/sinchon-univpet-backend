@@ -20,6 +20,9 @@ from django.db.models import DateTimeField, ExpressionWrapper, F, fields
 from django.db.models.functions import Now
 from rest_framework.generics import ListAPIView
 
+from likes.models import Like
+from likes.serializers import LikeSerializer
+
 class PostViewSet(ModelViewSet):
     serializer_class = PostSerializer
     permission_classes = (IsAuthenticated,)
@@ -79,3 +82,27 @@ def add_comment(request):
     
     serializer = CommentSerializer(comment)
     return Response(serializer.data, status=status.HTTP_201_CREATED)    
+
+@api_view(['GET'])
+def get_petition_detail(request, post_id):
+    try:
+        # Post 정보 가져오기
+        post = Posts.objects.get(id=post_id)
+        post_serializer = PostSerializer(post)
+
+        # Comment 정보 가져오기
+        comments = Comment.objects.filter(post=post)
+        comment_serializer = CommentSerializer(comments, many=True)
+
+        # Like 정보 가져오기
+        likes = Like.objects.filter(post=post)
+        like_serializer = LikeSerializer(likes, many=True)
+
+        return Response({
+            'post': post_serializer.data,
+            'comments': comment_serializer.data,
+            'likes': like_serializer.data
+        }, status=status.HTTP_200_OK)
+
+    except Posts.DoesNotExist:
+        return Response({"error": "Post not found"}, status=status.HTTP_404_NOT_FOUND)
