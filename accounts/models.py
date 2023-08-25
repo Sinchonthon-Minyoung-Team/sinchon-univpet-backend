@@ -58,10 +58,10 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'username'
 
-    university = models.CharField(max_length=256)
-    student_id = models.CharField(max_length=256)
-    name = models.CharField(max_length=128)
-    major = models.CharField(max_length=128)
+    university = models.CharField(max_length=256, blank=True)
+    student_id = models.CharField(max_length=256, blank=True)
+    name = models.CharField(max_length=128, blank=True)
+    major = models.CharField(max_length=128, blank=True)
 
     objects = CustomUserManager()
     oauths = OAuthUserManager()
