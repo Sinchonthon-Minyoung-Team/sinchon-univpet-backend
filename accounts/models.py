@@ -60,6 +60,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     university = models.CharField(max_length=256)
     student_id = models.CharField(max_length=256)
+    name = models.CharField(max_length=128)
+    major = models.CharField(max_length=128)
 
     objects = CustomUserManager()
     oauths = OAuthUserManager()
