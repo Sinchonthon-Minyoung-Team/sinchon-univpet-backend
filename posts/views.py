@@ -7,9 +7,13 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 
-from posts.models import Posts
-from posts.serializers import PostSerializer
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from .permissions import IsOwnerOrReadOnly
+
+from posts.models import Posts, Comment
+from posts.serializers import PostSerializer, CommentSerializer
 
 from django.db.models import DateTimeField, ExpressionWrapper, F, fields
 from django.db.models.functions import Now
@@ -52,3 +56,12 @@ def sorted_post_list(request):
     
     serializer = PostSerializer(sorted_queryset, many=True)
     return Response(serializer.data)
+
+class CommentViewSet(ModelViewSet):
+    authentication_classes = [BasicAuthentication, SessionAuthentication]
+    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(user = self.request.user)

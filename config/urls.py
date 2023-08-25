@@ -9,11 +9,16 @@ from rest_framework_simplejwt.views import TokenRefreshView
 from rest_framework_simplejwt.views import TokenRefreshView
 from rest_framework.routers import DefaultRouter
 from auths.views import OAuthTokenObtainView
+from accounts.views import AccountCreateRetrieveViewSet
 
-from posts.views import PostViewSet
+from posts.views import PostViewSet, CommentViewSet
 
 posts_router = DefaultRouter()
 posts_router.register(r'posts', PostViewSet, basename='posts')
+
+comments_router = DefaultRouter()
+comments_router.register(r'comments', CommentViewSet, basename='comments')
+
 
 accounts_router = DefaultRouter()
 accounts_router.register(r'accounts', AccountCreateRetrieveViewSet, basename='accounts')

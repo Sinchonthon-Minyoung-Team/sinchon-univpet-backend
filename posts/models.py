@@ -33,3 +33,12 @@ class Posts(models.Model):
         if days_remaining.days < 0:
             return "End"
         return days_remaining.days
+
+class Comment(models.Model):
+    post = models.ForeignKey(Posts, on_delete = models.CASCADE)
+    comment = models.CharField(max_length = 100)
+    created_at = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        return self.comment
