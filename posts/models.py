@@ -24,9 +24,9 @@ class Posts(models.Model):
     def __str__(self):
         return self.title
     
-    @property
-    def status(self):
-        if timezone.now().date() - self.created_at.date() > 30:
-            return 'EN'
-        else:
-            return 'CU'
+    # @property
+    # def status(self):
+    #     if timezone.now().date() - self.created_at.date() > 30:
+    #         return 'EN'
+    #     else:
+    #         return 'CU'
