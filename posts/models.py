@@ -16,9 +16,8 @@ class Posts(models.Model):
     writer = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=100)
     category = models.CharField(max_length=2, choices=CATEGORY_CHOICES)
-    purpose = models.TextField()
     content = models.TextField()
-    likes = models.IntegerField()
+    likes = models.IntegerField(default=0)
     status = models.CharField(max_length=2, choices=STATUS_CHOICES)
     created_at = models.DateTimeField()
 
