@@ -22,9 +22,9 @@
 
 |      김규빈 <br/> **(백엔드)**       |          손지석 <br/> **(백엔드)**          |       신선희 <br/> **(백엔드)**        |       신수빈  <br/> **(백엔드)**       | 
 | :------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------: | 
-|   <img width="160px" src="https://github.com/wooseok123/sinchonthon_readme/assets/59460718/5e1d7e98-b9d2-4deb-a4b6-b94a04267cef" />    |                      <img src="https://i.ibb.co/GQk1mR6/sjs.jpg" alt="sjs" width="160px" />    |                   <img src="https://i.ibb.co/PNYq2gN/ssh.jpg" alt="ssh" width="160px">   | <img src="https://i.ibb.co/YtL1Lqr/ssb.jpg" alt="ssb" width="160px" /> |
+|   <img src="https://i.ibb.co/BywjTNd/kkb.jpg" alt="kkb" width="160px">    |                      <img src="https://i.ibb.co/GQk1mR6/sjs.jpg" alt="sjs" width="160px" />    |                   <img src="https://i.ibb.co/PNYq2gN/ssh.jpg" alt="ssh" width="160px">   | <img src="https://i.ibb.co/YtL1Lqr/ssb.jpg" alt="ssb" width="160px" /> |
 |   [kyubiin](https://github.com/kyubiin)   |    [jiseokson](https://github.com/jiseokson)  |    [fressh1127](https://github.com/fressh1127)  |    [2020147508](https://github.com/2020147508)  |
-| 서강대 영어영문, 컴퓨터공학  | 홍익대 컴퓨터공학 | 서강대 수학, 컴퓨터공학 | 연세대 컴퓨터과학 |
+| 서강대 영문, 컴퓨터공학  | 홍익대 컴퓨터공학 | 서강대 수학, 컴퓨터공학 | 연세대 컴퓨터과학 |
 
 ## 프로젝트 소개
 
