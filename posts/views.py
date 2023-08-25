@@ -20,7 +20,8 @@ class PostViewSet(ModelViewSet):
     
     def get_queryset(self):
         return Posts.objects.order_by('-created_at')
-    
+
+## d-day 기준으로 정렬해서 불러오는 뷰    
 class SortedPostListView(ListAPIView):
     serializer_class = PostSerializer
 
