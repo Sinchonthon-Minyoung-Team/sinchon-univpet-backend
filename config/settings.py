@@ -155,6 +155,7 @@ CORS_ORIGIN_WHITELIST = [
     'http://www.univpet.com',
     'http://univpet.com',
     'http://localhost:3000',
+    'http://3.38.34.206/loginpage',
 ]
 
 REST_FRAMEWORK = {
